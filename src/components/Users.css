@@ -1,0 +1,7 @@
+.users{
+    width: 45%;
+    float: left;
+    border: 3px solid black;
+    border-radius: 40px;
+    padding: 20px;
+}

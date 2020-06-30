@@ -1,0 +1,18 @@
+.user{
+    border: 1px solid gray;
+    margin-bottom: 1px;
+    background-color: white;
+  }
+
+  .clickedUser{
+    border: 1px solid gray;
+    margin-bottom: 1px;
+    background-color: orange;
+  }
+
+  
+
+  .otherData{
+    border: 1px solid black;
+    border-radius: 20px;
+  }
