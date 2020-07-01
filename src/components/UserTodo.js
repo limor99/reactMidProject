@@ -1,13 +1,27 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 
 import './UserTodo.css';
 
+import AppContext from '../AppContext';
+
 function UserTodo(props) {
-const [isCompleted, setIsCompleted] = useState(props.userTodo.completed);
-
-
+    const appContext = useContext(AppContext);
+    const [isCompleted, setIsCompleted] = useState(props.userTodo.completed);
+/*
+    useEffect(() =>{
+        
+        setIsCompleted(!isCompleted);
+        
+    }, [props.userTodo])
+*/
 const updateTodo = () =>{
-//    props.updateTodoCallback(true);
+    let todoObj = {
+        userId : props.userTodo.userId,
+        id: props.userTodo.id,
+        title: props.userTodo.title,
+        completed: true
+    }
+    appContext.updateTodoCallback(todoObj);
     setIsCompleted(!isCompleted);
    
 }

@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 
 import userUtils from '../utils/UsersUtil.js';
 
 import './User.css';
+import AppContext from '../AppContext.js';
 
 function User(props) {
+    const appContext = useContext(AppContext);
     const [name, setName] = useState(props.user.name);
     const [email, setEmail] = useState(props.user.email);
     const [street, setStreet] = useState(props.user.address.street);
@@ -12,37 +14,33 @@ function User(props) {
     const [zipcode, setZipcode] = useState(props.user.address.zipcode);
     const [isDisplayOtherData, setIsDisplayOtherData] = useState(false);
     const [isClickedUser, setIsClickedUser] = useState(false);
-    const [prevClickedUserId, setPrevClickedUserId] = useState(0);
-
-    const updateUser = () =>{
-        let userId = props.user.id;
-        let updateObj = {
-            id: userId,
-            name: name,
-            email: email,
-            street: street,
-            city: city,
-            zipcode: zipcode
-        }
-        props.updateCallback(updateObj);
-        
-    }
-
-    const deleteUser = () =>{
-        let userId = props.user.id;
-        props.deleteCallback(userId);
-    }
+    //const [prevClickedUserId, setPrevClickedUserId] = useState(0);
 
     const getUserTodosAndPosts = () =>{
-   /*     if(prevClickedUserId !== 0){
-            props.updateUserClass(prevClickedUserId);
-        }
-        */
         setIsClickedUser(true);
         let userId = props.user.id;
-        setPrevClickedUserId(userId);
-        props.getUserData(userId);
+        //setPrevClickedUserId(userId);
+        appContext.getUserTodosAndPostsCallback(userId);
     }
+
+         const updateUser = () =>{
+            let userId = props.user.id;
+            let updateObj = {
+                id: userId,
+                name: name,
+                email: email,
+                street: street,
+                city: city,
+                zipcode: zipcode
+            }
+            appContext.updateCallback(updateObj);
+            
+        }
+    
+        const deleteUser = () =>{
+            let userId = props.user.id;
+            appContext.deleteCallback(userId);
+        }
 
     return (
         <div className={isClickedUser? "clickedUser" : "user"}>
@@ -62,4 +60,4 @@ function User(props) {
     )
 }
 
-export default User
+export default User;

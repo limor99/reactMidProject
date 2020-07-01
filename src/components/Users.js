@@ -1,53 +1,54 @@
-import React, {useState ,useEffect} from 'react';
+import React, {useState ,useEffect, useContext} from 'react';
 
 import User from './User';
 import userUtils from '../utils/UsersUtil.js';
+import AppContext from '../AppContext.js';
 
 import './Users.css';
 
 
-const Users = (props) => {
+const Users = () => {
+    const appContext = useContext(AppContext);
     const [searchText, setSearchText] = useState('');
-    const [filterDisplay, setFilterDisplay] = useState(props.users);
+    const [filterDisplay, setFilterDisplay] = useState(appContext.users);
+    const [name, setName] = useState(appContext.name);
+    const [arr, setArr] = useState(appContext.arr);
 
     useEffect(() =>{
-        setFilterDisplay(props.users);
-    }, [props.users])
+        
+        setFilterDisplay(appContext.users);
+        
+    }, [appContext.users]);
 
     const search = (searchText) =>{
         setSearchText(searchText);
-        let searchResult = props.users.filter(user => ((user.name.toLowerCase().includes(searchText.toLowerCase())) ||
+        let searchResult = appContext.users.filter(user => ((user.name.toLowerCase().includes(searchText.toLowerCase())) ||
                                                      (user.email.toLowerCase().includes(searchText.toLowerCase()))))
         setFilterDisplay(searchResult);
     }
+    
+        return (
+           
 
-    const deleteUser = (userId) =>{
-        props.deleteCallback(userId)
-
-    }
-
-    const updateUser = (obj) =>{
-        props.updateCallback(obj)
-
-    }
-
-    const getUserTodosAndPosts = (id) =>{
-        props.getUserData(id);
-    }
-
-    return (
-        <div className="users">
-            Search <input type="text" onChange={(e) => search(e.target.value)} /> <br/>
-            {
-                filterDisplay.map(user =>{
-                    return (<div key={user.id}>
-                                <User user={user} deleteCallback={deleteObj => deleteUser(deleteObj)} updateCallback={updateObj => updateUser(updateObj)} 
-                                        getUserData={(id => getUserTodosAndPosts(id))}/>    
-                            </div>)
-                })
-            }
-        </div>
-    )
+               
+            <div className="users">
+              
+              
+              Search <input type="text" onChange={(e) => search(e.target.value)} /> <br/>
+                {
+                    filterDisplay.map(user =>{
+                        return (<div key={user.id}>
+                                    <User user={user}/>    
+                                </div>)
+                    })
+                    
+                }
+            
+            </div>
+         
+           
+        )
+    
 }
 
 export default Users
