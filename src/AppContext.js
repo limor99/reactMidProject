@@ -5,11 +5,13 @@ const AppContext = React.createContext({
     usersTodos: [],
     userTodos: [],
     userPosts: [],
+    clickedUserArr: [],
+    isUserTodosCompletedArr: [],
     updateCallback: () => {}, 
     deleteCallback: () => {}, 
     getUserTodosAndPostsCallback: () =>{},
     updateTodoCallback: () =>{},
-
+    addUserTodoCallback: () => {},
 });
 
 export default AppContext;

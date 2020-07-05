@@ -1,11 +1,11 @@
 .user{
-    border: 1px solid gray;
-    margin-bottom: 1px;
+    /*border: 1px solid gray;*/
+    
     background-color: white;
   }
 
   .clickedUser{
-    border: 1px solid gray;
+   /* border: 1px solid gray;*/
     margin-bottom: 1px;
     background-color: orange;
   }
@@ -15,4 +15,14 @@
   .otherData{
     border: 1px solid black;
     border-radius: 20px;
+  }
+
+  .completedTodos{
+    border: 3px solid green;
+    margin-bottom: 10px;
+  }
+
+  .uncompletedTodos{
+    border: 3px solid red;
+    margin-bottom: 10px;
   }

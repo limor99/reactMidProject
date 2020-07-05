@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 
 import userUtils from '../utils/UsersUtil.js';
 
@@ -14,12 +14,30 @@ function User(props) {
     const [zipcode, setZipcode] = useState(props.user.address.zipcode);
     const [isDisplayOtherData, setIsDisplayOtherData] = useState(false);
     const [isClickedUser, setIsClickedUser] = useState(false);
-    //const [prevClickedUserId, setPrevClickedUserId] = useState(0);
+    const [isAllCompletedTodos, setIsAllCompletedTodos] = useState(false);
+
+    useEffect(() => {
+        if(appContext.clickedUserArr.length > 0){
+            let userId = props.user.id;
+            let isClickedArr = appContext.clickedUserArr;
+            let userIndex = isClickedArr.findIndex(item => item.userId === userId);
+            setIsClickedUser(isClickedArr[userIndex].isClicked)
+        }
+        
+    }, [appContext.clickedUserArr])
+
+    useEffect(() =>{
+        if(appContext.isUserTodosCompletedArr.length > 0){
+            let userId = props.user.id;
+            let isCompletedArr = appContext.isUserTodosCompletedArr;
+            let userIndex = isCompletedArr.findIndex(item => item.userId === userId);
+            setIsAllCompletedTodos(isCompletedArr[userIndex].isComplededTodos);
+        }
+    }, [appContext.isUserTodosCompletedArr])
 
     const getUserTodosAndPosts = () =>{
-        setIsClickedUser(true);
         let userId = props.user.id;
-        //setPrevClickedUserId(userId);
+       
         appContext.getUserTodosAndPostsCallback(userId);
     }
 
@@ -43,19 +61,21 @@ function User(props) {
         }
 
     return (
-        <div className={isClickedUser? "clickedUser" : "user"}>
-            <div onClick={() => getUserTodosAndPosts()}> ID: {props.user.id}<br/></div>
-            Name: <input type="text" value={name} onChange={e => setName(e.target.value)}/><br/>
-            Email: <input type="text" value={email} onChange={e => setEmail(e.target.value)}/><br/>
-            <input type="button" value="Other Data" onMouseOver={() => setIsDisplayOtherData(true)} onClick={() => setIsDisplayOtherData(false)} />
-            <div className={`otherData ${isDisplayOtherData ? "display" : "notDisplay"}`}>
-                Strret: <input type="text" value={street} onChange={e => setStreet(e.target.value)} /><br/>
-                City: <input type="text" value={city} onChange={e => setCity(e.target.value)} /><br/>
-                Zip Code: <input type="text" value={zipcode} onChange={e => setZipcode(e.target.value)} /><br/>
-            </div>       
-            
-            <input type="button" value="Update" onClick={() => updateUser()}/>
-            <input type="button" value="Delete" onClick={() => deleteUser()}/>
+        <div className={isAllCompletedTodos ? "completedTodos" : "uncompletedTodos"}>
+            <div className={isClickedUser? "clickedUser" : "user"}>
+                <div onClick={() => getUserTodosAndPosts()}> ID: {props.user.id}<br/></div>
+                Name: <input type="text" value={name} onChange={e => setName(e.target.value)}/><br/>
+                Email: <input type="text" value={email} onChange={e => setEmail(e.target.value)}/><br/>
+                <input type="button" value="Other Data" onMouseOver={() => setIsDisplayOtherData(true)} onClick={() => setIsDisplayOtherData(false)} />
+                <div className={`otherData ${isDisplayOtherData ? "display" : "notDisplay"}`}>
+                    Strret: <input type="text" value={street} onChange={e => setStreet(e.target.value)} /><br/>
+                    City: <input type="text" value={city} onChange={e => setCity(e.target.value)} /><br/>
+                    Zip Code: <input type="text" value={zipcode} onChange={e => setZipcode(e.target.value)} /><br/>
+                </div>       
+                
+                <input type="button" value="Update" onClick={() => updateUser()}/>
+                <input type="button" value="Delete" onClick={() => deleteUser()}/>
+            </div>  
         </div>
     )
 }
