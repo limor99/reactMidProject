@@ -9,9 +9,9 @@ function User(props) {
     const appContext = useContext(AppContext);
     const [name, setName] = useState(props.user.name);
     const [email, setEmail] = useState(props.user.email);
-    const [street, setStreet] = useState(props.user.address.street);
-    const [city, setCity] = useState(props.user.address.city);
-    const [zipcode, setZipcode] = useState(props.user.address.zipcode);
+    const [street, setStreet] = useState(props.user.address !== undefined ? props.user.address.street : '');
+    const [city, setCity] = useState(props.user.address !== undefined ? props.user.address.city : '');
+    const [zipcode, setZipcode] = useState(props.user.address !== undefined ? props.user.address.zipcode : '');
     const [isDisplayOtherData, setIsDisplayOtherData] = useState(false);
     const [isClickedUser, setIsClickedUser] = useState(false);
     const [isAllCompletedTodos, setIsAllCompletedTodos] = useState(false);

@@ -12,6 +12,8 @@ const AppContext = React.createContext({
     getUserTodosAndPostsCallback: () =>{},
     updateTodoCallback: () =>{},
     addUserTodoCallback: () => {},
+    setIsDisplayUserTodoCallback: () =>{},
+    addUserCallback: () => {},
 });
 
 export default AppContext;

@@ -7,13 +7,7 @@ import AppContext from '../AppContext';
 function UserTodo(props) {
     const appContext = useContext(AppContext);
     const [isCompleted, setIsCompleted] = useState(props.userTodo.completed);
-/*
-    useEffect(() =>{
-        
-        setIsCompleted(!isCompleted);
-        
-    }, [props.userTodo])
-*/
+
 const updateTodo = () =>{
     let todoObj = {
         userId : props.userTodo.userId,

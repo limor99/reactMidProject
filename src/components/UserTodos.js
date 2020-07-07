@@ -9,9 +9,8 @@ import './UserTodos.css';
 function UserTodos(props) {
     const appContext = useContext(AppContext);
     const [userTodosDisplay, setUserTodosDisplay] = useState([]);
-    const [isUserTodosCompleted, setIsUserTodosCompleted] = useState(false)
+    //const [isUserTodosCompleted, setIsUserTodosCompleted] = useState(false)
     const [isDisplayUserTodos, setIsDisplayUserTodos] = useState(appContext.isDisplayUserTodos); //display user's todos and not add todo form
-    //const [isDisplayAddForm, setIsDisplayAddForm] = useState(false);    //display add todo form and not user's todos
     const [title, setTitle] = useState('');
     
     useEffect(() =>{
@@ -22,13 +21,22 @@ function UserTodos(props) {
         
     }, [props.userId]);
 
+    useEffect(() =>{
+        setIsDisplayUserTodos(appContext.isDisplayUserTodos)
+    }, [appContext.isDisplayUserTodos])
 
-    const addUserFormTodo = () =>{
-        setIsDisplayUserTodos(false);
+    useEffect(() =>{
+        setUserTodosDisplay(appContext.userTodos)
+    }, [appContext.userTodos])
+
+
+    const dispalyAddUserTodoForm = () =>{
+        appContext.setIsDisplayUserTodoCallback(false);
+       
     }
 
     const cancelNewTodo = () =>{
-        setIsDisplayUserTodos(true);
+        appContext.setIsDisplayUserTodoCallback(true);
     }
 
     const addUserTodo = () =>{
@@ -36,7 +44,9 @@ function UserTodos(props) {
             userId: props.userId,
             title: title
         }
+        
         appContext.addUserTodoCallback(obj);
+        setTitle('');
     }
 
 
@@ -44,7 +54,7 @@ function UserTodos(props) {
         <div>
             <div className={isDisplayUserTodos? "displayTodos" : "unDisplayTodos"}>
                 Todos - User {props.userId}  
-                <input type="button" value="Add" onClick={() => addUserFormTodo()}/>
+                <input type="button" value="Add" onClick={() => dispalyAddUserTodoForm()}/>
             
                 {
                     userTodosDisplay.map(todo =>{
@@ -57,7 +67,7 @@ function UserTodos(props) {
 
             <div className={!isDisplayUserTodos? "displayForm" : "unDisplayForm"}>
                 New Todo - User {props.userId} <br/>
-                Title: <input type="text" onChange={e => setTitle(e.target.value)} /><br/>
+                Title: <input type="text" value={title} onChange={e => setTitle(e.target.value)} /><br/>
 
                 <input type="button" value="Cancel" onClick={() => cancelNewTodo()}/>
                 <input type="button" value="Add" onClick={() => addUserTodo()}/>

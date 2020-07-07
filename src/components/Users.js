@@ -26,15 +26,20 @@ const Users = () => {
                                                      (user.email.toLowerCase().includes(searchText.toLowerCase()))))
         setFilterDisplay(searchResult);
     }
+
+    const addNewUser = () =>{
+        appContext.setIsDisplayNewUserFormCallback(true);
+    }
     
         return (
            
 
                
             <div className="users">
+              Search <input type="text" onChange={(e) => search(e.target.value)} />
               
-              
-              Search <input type="text" onChange={(e) => search(e.target.value)} /> <br/>
+             <input type="button" value="Add" onClick={() => addNewUser()} /> <br/>
+
                 {
                     filterDisplay.map(user =>{
                         return (<div key={user.id}>
