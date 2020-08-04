@@ -23,7 +23,7 @@ const Header = () =>{
         <div className={classes.header}>
             <AppBar position="static" className={classes.appBar}>
                 <Toolbar>
-                    Users's Todos & Post Management
+                    <h3>Users's Todos & Post Management</h3>
                 </Toolbar>
             </AppBar>
         </div>

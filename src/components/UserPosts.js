@@ -15,8 +15,6 @@ import PlaylistAddOutlinedIcon from '@material-ui/icons/PlaylistAddOutlined';
 
 import AppContext from '../AppContext';
 
-import './UserPosts.css';
-
 const useStyles = makeStyles( theme =>({
     userPostsTitle: {
         position: "sticky",
@@ -105,11 +103,11 @@ function UserPosts(props) {
     
     return (
         <React.Fragment>
-            <div className={isDisplayUserPosts? "displayPosts" : "unDisplayPosts"}>
+            <div className={isDisplayUserPosts? "display" : "notDisplay"}>
                 <Typography className={classes.userPostsTitle} variant="h6" color="textSecondary" >
                     <div>
                         {props.name}'s Posts, id: {props.userId}
-                        <IconButton  className={classes.addBtn} onClick={() => dispalyAddUserPostForm()} aria-label="add post">
+                        <IconButton onClick={() => dispalyAddUserPostForm()} aria-label="add post">
                             <AddCircleOutlinedIcon fontSize="large"  />
                         </IconButton> 
                     </div>
@@ -125,7 +123,7 @@ function UserPosts(props) {
                 }
             </div>
 
-            <div className={!isDisplayUserPosts? "displayForm" : "unDisplayForm"}>
+            <div className={!isDisplayUserPosts? "displayForm" : "notDisplay"}>
                 <Grid container className="formContainer" direction="column" justify="flex-start" alignItems="center">
                     <Grid item className="titleLine">
                         <Grid container direction="row" justify="flex-start"  alignItems="center">
@@ -135,7 +133,7 @@ function UserPosts(props) {
                                 </IconButton>
                             </Grid>
                             <Grid item className={classes.title}>
-                                <Typography variant="h6" align="center" color="textSecondary" className={classes.todoTitle}>
+                                <Typography variant="h6" align="center" color="textSecondary">
                                         Add New Post for User {props.name} <br/>
                                 </Typography>
                             </Grid>
@@ -145,11 +143,11 @@ function UserPosts(props) {
                         <Card className={classes.newPost}>
                             
                             <CardContent>
-                                <label className={classes.titleLbl}>Title: </label>
+                                <label>Title: </label>
                                 
                                 <TextField className={classes.postTitle} id="outlined-basic" label="" variant="outlined" value={title} onChange={e => setTitle(e.target.value)}/>
                                 <br/><br/>
-                                <label className={classes.bodyLbl}>Body: </label>
+                                <label>Body: </label>
                                 <TextField className={classes.postBody} id="outlined-multiline-static" label="" multiline  rows={2} variant="outlined" value={body} onChange={e => setBody(e.target.value)}/>
                                 
                             </CardContent>

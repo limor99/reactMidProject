@@ -3,8 +3,6 @@ import todos from './images/todos.jpg';
 import AppContext from './AppContext';
 
 import './App.css';
-import './components/Users.css';
-
 
 import Users from './components/Users';
 import Header from './components/ui/Header';
@@ -27,29 +25,15 @@ const useStyles = makeStyles( theme =>({
   },
   swapContainer:{
     paddingRight: "1em"
-  },
-  
- 
+  }, 
   displayNewUserForm: {
     display: "block",
     margin: "2em 0 3em 0",
     alignSelf: "center"
-   
-  },
-  notDisplayNewUserForm: {
-    display: "none"
   },
   openImg: {
     width: "100%",
     marginBottom: "1em"
-   
-  },
-  welcomeDisplay: {
-    display: "block",
-   
-  },
-  notDisplayWelcome:{
-    display: "none",
   },
   welcomeTitle: {
     textAlign: "center",
@@ -58,11 +42,19 @@ const useStyles = makeStyles( theme =>({
     marginBottom: "1em",
     paddingTop: "1em",
     paddingBottom: "1em",
-    
   },
-  welcomeImg:{
-    width: "100%"
+  userTodos:{
+    height: "50vh",
+    overflow: "auto",
+    border: "2px solid black",
+    marginBottom: "1em"
   },
+  userPosts:{
+    height: "50vh",
+    overflow: "auto",
+    border: "2px solid black",
+    marginBottom: "1em"
+  }
   
 }))
 
@@ -215,31 +207,29 @@ const App = () => {
       setUserPosts([...userPostsArr, newPostObj]);
      
       setIsDisplayUserPosts(true);
-      
-  }
+    }
   
   const setIsDisplayUserPostsCallback = (isDisplay) =>{
     setIsDisplayUserPosts(isDisplay);
-}
-
-const setIsDisplayNewUserFormCallback = (isDisplay) =>{
-  setIsDisplayNewUserForm(isDisplay);
-  
-  if(selectedUserId === undefined){
-    setIsDisplayUserData(false);
-    setIsDisplayWelcome(!isDisplay);
   }
-  else{
-    setIsDisplayWelcome(false);
-    setIsDisplayUserData(!isDisplay);
-  }
-     
-}
 
-const addUserCallback = (newUserObj) =>{
-  let usersArr = users;
-  setUsers([...usersArr, newUserObj]);
-}
+  const setIsDisplayNewUserFormCallback = (isDisplay) =>{
+    setIsDisplayNewUserForm(isDisplay);
+    
+    if(selectedUserId === undefined){
+      setIsDisplayUserData(false);
+      setIsDisplayWelcome(!isDisplay);
+    }
+    else{
+      setIsDisplayWelcome(false);
+      setIsDisplayUserData(!isDisplay);
+    }
+  }
+
+  const addUserCallback = (newUserObj) =>{
+    let usersArr = users;
+    setUsers([...usersArr, newUserObj]);
+  }
 
   const welcome = (
     <Grid container direction="column" justify="center" alignItems="center">
@@ -252,30 +242,26 @@ const addUserCallback = (newUserObj) =>{
             </Typography>
 
           </Grid>
-          <Grid item className={classes.welcomeImg}>
+          <Grid item className="fWidth">
             <img className={classes.openImg} src={todos}/>
           </Grid>
       </Grid>
   )
 
   const userData = (
-
-      <React.Fragment>
-                
-            <div className="userTodos">
-              <UserTodos  name={selectedUserName} userId={selectedUserId} />
-            </div>
-        
-        
-            <div className="userPosts">
-              <UserPosts name={selectedUserName} userId={selectedUserId} />
-            </div>
-        
-      </React.Fragment>
+    <React.Fragment>
+        <div className={classes.userTodos}>
+          <UserTodos  name={selectedUserName} userId={selectedUserId} />
+        </div>
+      
+        <div className={classes.userPosts}>
+          <UserPosts name={selectedUserName} userId={selectedUserId} />
+        </div>
+    </React.Fragment>
   )
 
   const addUser = (
-    <Grid item className={isDisplayNewUserForm? classes.displayNewUserForm : classes.notDisplayNewUserForm}>
+    <Grid item className={isDisplayNewUserForm? classes.displayNewUserForm : "notDisplay"}>
       <AddUser />
     </Grid>
     
@@ -298,10 +284,10 @@ const addUserCallback = (newUserObj) =>{
               </Grid>
               <Grid item className={classes.swapContainer} sm={12} md={6}>
                   <Grid container direction="column" justify="center" alignItems="center" >
-                      <Grid item className={isDisplayWelcome? classes.welcomeDisplay : classes.notDisplayWelcome}>
+                      <Grid item className={isDisplayWelcome? "display" : "notDisplay"}>
                           {matches ? null : welcome}
                       </Grid>
-                      <Grid item className={isDisplayUserData? "displayUserData" : "notDisplayUserData"}>
+                      <Grid item className={isDisplayUserData? "display": "notDisplay"}>
                           {matches ? null : userData}
                       </Grid>
 

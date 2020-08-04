@@ -90,7 +90,7 @@ function AddUser() {
                         
                         <IconButton  className={classes.addBtn} onClick={() => addUserSubmit()} aria-label="add user">
                             <AddCircleOutlinedIcon fontSize="large"/>
-                        </IconButton>      
+                        </IconButton>
                     </form>
                 </div>
 

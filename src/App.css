@@ -46,64 +46,21 @@
   display: none;
 }
 
-.displayUserData{
-  display: block;
- 
- /* width: 45%;
-  float: right;*/
-}
-
-.notDisplayUserData{
-  display: none;
-
-}
-
-.userTodos{
-  height: 50vh;
-  overflow: auto;
-  border: 2px solid black;
-  margin-bottom: 1em;
-}
-
-.userPosts{
-  height: 50vh;
-  overflow: auto;
-  border: 2px solid black;
-  margin-bottom: 1em;
- /* margin: 10px;
-  
-  border-radius: 40px;
-  padding: 3px 20px 20px 20px;*/
-
-}
-
-.displayNewUserForm{
-/*display: block;
-  width: 45%;
-  float: right;
-  border: 3px solid black
-  border-radius: 40px;*/
-  
-}
-
-.notDisplayNewUserForm{
- /* display: none;*/
-
-}
-
 .titleLine {
   width: 100%;
   background-color: #fffa9b;
   border-bottom: 1px solid black
 }
 
-.title{
-  margin-left: auto;
-    margin-right: auto;
-    padding-right: 3em;
+.formContainer{
+  height: 100%;
 }
 
+.fWidth{
+  width: 100%;
+}
 
-.formContainer{
+.displayForm{
+  display: block;
   height: 100%;
 }

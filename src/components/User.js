@@ -2,7 +2,6 @@ import React, {useState, useEffect, useContext} from 'react';
 
 import userUtils from '../utils/UsersUtil.js';
 
-import './User.css';
 import AppContext from '../AppContext.js';
 
 
@@ -39,14 +38,6 @@ const useStyles = makeStyles( theme =>({
         backgroundColor: "lightcyan"
        
     },
-    
-    display: {
-        display: "block",
-        
-    },
-    notDisplay: {
-        display: "none"
-    },
     btnSpacing: {
         marginLeft: "auto",
     },
@@ -55,7 +46,14 @@ const useStyles = makeStyles( theme =>({
     },
     userAction:{
         paddingTop: "0"
-    }
+    },
+    user:{
+        backgroundColor: "lightcyan"
+    },
+    clickedUser:{
+        marginBottom: "1px",
+        borderLeft: "5px solid #F7EF64"
+      }
     
 }))
 
@@ -122,7 +120,7 @@ function User(props) {
         <Card variant="outlined" className={isAllCompletedTodos ? classes.completedTodos : classes.uncompletedTodos}>
             <CardContent className={classes.userContent}>
             
-                <div className={isClickedUser? "clickedUser" : "user"}>
+                <div className={isClickedUser? classes.clickedUser : classes.user}>
                     <div class="container">
                         <form class="form-horizontal paddingForm">
                             <Typography className={classes.title} variant="subtitle2" color="textSecondary" gutterBottom onClick={() => getUserTodosAndPosts()}>
@@ -142,7 +140,7 @@ function User(props) {
                             
                                 
                                 
-                            <div className={isDisplayOtherData ? classes.display : classes.notDisplay}>
+                            <div className={isDisplayOtherData ? "display" : "notDisplay"}>
                                 <div class="form-group">
                                     <label class="col-3 control-label" >Strret:</label>
                                     <input class="col-9" type="text" value={street} onChange={e => setStreet(e.target.value)} />
@@ -179,7 +177,7 @@ function User(props) {
             </CardActions>
         </Card>
 
-        <Grid item className={appContext.isDisplayUserData? classes.displayUserData : classes.notDisplayUserData}>
+        <Grid item >
             {appContext.matches && appContext.selectedUserId === props.user.id ? appContext.userData : null }
         </Grid>
         </React.Fragment>

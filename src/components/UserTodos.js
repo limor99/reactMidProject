@@ -16,22 +16,15 @@ import {makeStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import AddCircleOutlinedIcon from '@material-ui/icons/AddCircleOutlined';
 
-import './UserTodos.css';
 import pin from '../images/pin.png';
 
 const useStyles = makeStyles( theme =>({
     
     todoTitle: {
-       
         padding: "0.5em 0"
-
     },
     newTodo: {
-        //margin: "0 auto 1em auto",
-       // padding: "1em 0",
-        backgroundColor: "#fffa9b",
-       // width: "18em",
-       // height: "18em"
+       backgroundColor: "#fffa9b",
     },
     titleLbl: {
         paddingRight: "1em"
@@ -60,8 +53,11 @@ const useStyles = makeStyles( theme =>({
     },
     add:{
         marginLeft: "5.5em"
-    }
-    
+    },
+    pin:{
+        display: "block",
+        margin: "0 auto"
+    }   
     
 }))
 
@@ -115,7 +111,7 @@ function UserTodos(props) {
 
     return (
         <React.Fragment>
-            <div className={isDisplayUserTodos? "displayTodos" : "unDisplayTodos"}>
+            <div className={isDisplayUserTodos? "display" : "notDisplay"}>
                 <Typography className={classes.userTodosTitle} variant="h6" color="textSecondary" >
                     <div>
                         {props.name}'s Todos, id: {props.userId}
@@ -136,8 +132,7 @@ function UserTodos(props) {
                 }
             </div>
 
-            <div className={!isDisplayUserTodos? "displayForm" : "unDisplayForm"}>
-                
+            <div className={!isDisplayUserTodos? "displayForm" : "notDisplay"}>
                 <Grid container className="formContainer" direction="column" justify="flex-start" alignItems="center">
                     <Grid item className="titleLine">
                         <Grid container direction="row" justify="flex-start"  alignItems="center">
@@ -156,7 +151,7 @@ function UserTodos(props) {
                     <Grid item className={classes.note}>
                         <Card className={classes.newTodo}>
                             
-                            <img className="pin" src={pin} />
+                            <img className={classes.pin} src={pin} />
             
                             <CardContent className={classes.newTodoTitle}>
                                 <label className={classes.titleLbl}>Title: </label>

@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
 
-import './UserTodo.css';
 import pin from '../images/pin.png';
 
 import {makeStyles} from '@material-ui/core/styles';
@@ -17,8 +16,11 @@ const useStyles = makeStyles( theme =>({
         display: "block",
         textAlign: "center"
     },
-    notDisplay: {
-        display: "none"
+    todo:{
+        padding: "0 1em 1em 1em",
+        margin: "1em 5em 1.5em 5em",
+        backgroundColor: "#fffa9b",
+        fontSize: "15pt"
     }
     
 }))
@@ -42,11 +44,11 @@ const updateTodo = () =>{
 
 
     return (
-        <div className="todo">
+        <div className={classes.todo}>
             <img className="pin" src={pin} />
             Title: {props.userTodo.title}<br/>
             Completed: {isCompleted.toString()}
-            <div className={isCompleted? classes.notDisplay : classes.display}>
+            <div className={isCompleted? "notDisplay" : classes.display}>
                
                 <Button
                     variant="contained"
