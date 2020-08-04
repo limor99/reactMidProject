@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import todos from './images/todos.jpg';
 import AppContext from './AppContext';
 
 import './App.css';
@@ -14,6 +14,58 @@ import AddUser from './components/AddUser';
 
 import usersUtil from './utils/UsersUtil';
 
+import {makeStyles} from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import {useTheme} from '@material-ui/core/styles';
+
+const useStyles = makeStyles( theme =>({
+  usersContainer: {
+    padding: "0 1em",
+    width: "100%"
+  },
+  swapContainer:{
+    paddingRight: "1em"
+  },
+  
+ 
+  displayNewUserForm: {
+    display: "block",
+    margin: "2em 0 3em 0",
+    alignSelf: "center"
+   
+  },
+  notDisplayNewUserForm: {
+    display: "none"
+  },
+  openImg: {
+    width: "100%",
+    marginBottom: "1em"
+   
+  },
+  welcomeDisplay: {
+    display: "block",
+   
+  },
+  notDisplayWelcome:{
+    display: "none",
+  },
+  welcomeTitle: {
+    textAlign: "center",
+    backgroundColor: "darkcyan",
+    color: "white",
+    marginBottom: "1em",
+    paddingTop: "1em",
+    paddingBottom: "1em",
+    
+  },
+  welcomeImg:{
+    width: "100%"
+  },
+  
+}))
+
 const App = () => {
 
   const [users, setUsers] = useState([]);
@@ -22,12 +74,18 @@ const App = () => {
   const [userTodos, setUserTodos] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
   const [isDisplayUserData, setIsDisplayUserData] = useState(false);
+  const [isDisplayWelcome, setIsDisplayWelcome] = useState(true);
   const [selectedUserId, setSelectedUserId] = useState();
+  const [selectedUserName, setSelectedUserName] = useState();
   const [clickedUserArr, setClickedUserArr] = useState([]);
   const [isUserTodosCompletedArr, setIsUserTodosCompletedArr] = useState([]);
   const [isDisplayUserTodos, setIsDisplayUserTodos] = useState(false);
   const [isDisplayUserPosts, setIsDisplayUserPosts] = useState(false);
   const [isDisplayNewUserForm, setIsDisplayNewUserForm] = useState(false);
+
+  const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
     useEffect (() =>{
         usersUtil.getUsers().then(resp => setUsers(resp));
@@ -36,7 +94,7 @@ const App = () => {
     }, []);
 
     useEffect(() =>{
-        let isUserCompletedTodosArr = new Array();
+        let isUserCompletedTodosArr = [];
         users.forEach((user, index) =>{
           let isCompleted = true;
             usersTodos.forEach(todo =>{
@@ -58,7 +116,7 @@ const App = () => {
     }, [users, usersTodos])
 
     useEffect(() =>{
-      let userCheckedArr = new Array();
+      let userCheckedArr = [];
       let isClicked;
       users.forEach(user =>{
         isClicked = false;
@@ -88,9 +146,10 @@ const App = () => {
     }
 
    
-    const getUserTodosAndPostsCallback = (id) =>{
+    const getUserTodosAndPostsCallback = (id, name) =>{
         setIsDisplayUserData(true);
         setSelectedUserId(id);
+        setSelectedUserName(name);
 
         getUserTodos(id);
         getUserPost(id);
@@ -98,17 +157,18 @@ const App = () => {
         setIsDisplayUserTodos(true);
         setIsDisplayUserPosts(true);
         setIsDisplayNewUserForm(false);
+        setIsDisplayWelcome(false);
     }
 
     const getUserTodos = (id) =>{
         let todos = usersTodos;
-        let allUserTodos = todos.filter(todo => todo.userId == id);
+        let allUserTodos = todos.filter(todo => todo.userId === id);
         setUserTodos(allUserTodos);
     }
 
     const getUserPost = (id) =>{
         let posts = usersPosts;
-        let allUserPosts = posts.filter(post => post.userId == id);
+        let allUserPosts = posts.filter(post => post.userId === id);
         setUserPosts(allUserPosts);
     }
 
@@ -164,6 +224,16 @@ const App = () => {
 
 const setIsDisplayNewUserFormCallback = (isDisplay) =>{
   setIsDisplayNewUserForm(isDisplay);
+  
+  if(selectedUserId === undefined){
+    setIsDisplayUserData(false);
+    setIsDisplayWelcome(!isDisplay);
+  }
+  else{
+    setIsDisplayWelcome(false);
+    setIsDisplayUserData(!isDisplay);
+  }
+     
 }
 
 const addUserCallback = (newUserObj) =>{
@@ -171,28 +241,77 @@ const addUserCallback = (newUserObj) =>{
   setUsers([...usersArr, newUserObj]);
 }
 
+  const welcome = (
+    <Grid container direction="column" justify="center" alignItems="center">
+          <Grid item className={classes.welcomeTitle}>
+            <Typography variant="h3">
+                Welcome to your User's Todos & Posts Managment app.
+            </Typography>
+            <Typography variant="h6">
+                Forget from the sticky note you used to
+            </Typography>
+
+          </Grid>
+          <Grid item className={classes.welcomeImg}>
+            <img className={classes.openImg} src={todos}/>
+          </Grid>
+      </Grid>
+  )
+
+  const userData = (
+
+      <React.Fragment>
+                
+            <div className="userTodos">
+              <UserTodos  name={selectedUserName} userId={selectedUserId} />
+            </div>
+        
+        
+            <div className="userPosts">
+              <UserPosts name={selectedUserName} userId={selectedUserId} />
+            </div>
+        
+      </React.Fragment>
+  )
+
+  const addUser = (
+    <Grid item className={isDisplayNewUserForm? classes.displayNewUserForm : classes.notDisplayNewUserForm}>
+      <AddUser />
+    </Grid>
+    
+  )
+
     
   return (
 
     <div className="App">
       <AppContext.Provider value={{users, updateCallback, deleteCallback, getUserTodosAndPostsCallback, usersTodos, userTodos, userPosts, 
-                      clickedUserArr, isUserTodosCompletedArr, isDisplayUserTodos, isDisplayUserPosts, updateTodoCallback, addUserTodoCallback, setIsDisplayUserTodoCallback,
+                      clickedUserArr, isUserTodosCompletedArr, isDisplayUserTodos, isDisplayUserPosts, matches, isDisplayUserData, userData, selectedUserId, addUser, updateTodoCallback, addUserTodoCallback, setIsDisplayUserTodoCallback,
                       addUserPostCallback, setIsDisplayUserPostsCallback, setIsDisplayNewUserFormCallback, addUserCallback}}>
           <Header/>
-          <Users/>
-          <div className={isDisplayUserData? "displayUserData": "notDisplayUserData"}>
-            <div className="userTodos">
-              <UserTodos  userId={selectedUserId} />
-            </div>
-            <div className="userPosts">
-              <UserPosts  userId={selectedUserId} />
-            </div>
-          </div>
+          <Grid container direction="row" justify="flex-start" alignItems="flex-start">
+              <Grid item>
+                  {matches ? welcome : null}
+              </Grid>
+              <Grid item className={classes.usersContainer}  sm={12} md={6}>
+                <Users />
+              </Grid>
+              <Grid item className={classes.swapContainer} sm={12} md={6}>
+                  <Grid container direction="column" justify="center" alignItems="center" >
+                      <Grid item className={isDisplayWelcome? classes.welcomeDisplay : classes.notDisplayWelcome}>
+                          {matches ? null : welcome}
+                      </Grid>
+                      <Grid item className={isDisplayUserData? "displayUserData" : "notDisplayUserData"}>
+                          {matches ? null : userData}
+                      </Grid>
 
-          <div className={isDisplayNewUserForm? "displayNewUserForm" : "notDisplayNewUserForm"}>
-              <AddUser />
-          </div>
-          
+                      {matches ? null : addUser}
+                      
+
+                      
+                  </Grid>
+              </Grid>
+          </Grid>
         </AppContext.Provider>
     </div>
   );

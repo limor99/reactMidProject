@@ -8,8 +8,15 @@
 
 .displayForm{
     display: block;
+    height: 100%;
 }
 
 .unDisplayForm{
     display: none;
+}
+
+.pin {
+    display: block;
+    margin: 0 auto;
+    
 }

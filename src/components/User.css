@@ -1,28 +1,44 @@
 .user{
-    /*border: 1px solid gray;*/
-    
-    background-color: white;
-  }
-
-  .clickedUser{
-   /* border: 1px solid gray;*/
-    margin-bottom: 1px;
-    background-color: orange;
-  }
-
+  /*border: 1px solid gray;*/
   
+  background-color: lightcyan;
+}
 
-  .otherData{
-    border: 1px solid black;
-    border-radius: 20px;
-  }
+.clickedUser{
+ /* border: 1px solid gray;*/
+  margin-bottom: 1px;
+  /*background-color: #edc227;*/
+ border-left: 5px solid #F7EF64;
+}
 
-  .completedTodos{
-    border: 3px solid green;
-    margin-bottom: 10px;
-  }
 
-  .uncompletedTodos{
-    border: 3px solid red;
-    margin-bottom: 10px;
-  }
+
+.otherData{
+  /*
+  border: 1px solid black;
+  border-radius: 20px;
+  */
+}
+
+.display{
+  /*display: block;*/
+  
+}
+
+.notDisplay{
+  /*display: none;*/
+}
+
+.completedTodos{
+ /* border: 3px solid green;
+  margin-bottom: 10px; */
+}
+
+.uncompletedTodos{
+  /*border: 3px solid red;
+  margin-bottom: 10px;*/
+}
+
+.paddingForm{
+ /* margin-bottom: 1em;*/
+}

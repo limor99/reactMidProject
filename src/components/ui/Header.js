@@ -2,12 +2,28 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
+import {makeStyles} from '@material-ui/core/styles';
+
+const useStyles = makeStyles( theme =>({
+    header: {
+        marginBottom: "1em",
+        
+    },
+    appBar:{
+        backgroundColor: "darkcyan"
+    }
+    
+
+}))
+
 const Header = () =>{
+    const classes = useStyles();
+
     return (
-        <div>
-            <AppBar position="static">
+        <div className={classes.header}>
+            <AppBar position="static" className={classes.appBar}>
                 <Toolbar>
-                    Users's Todos
+                    Users's Todos & Post Management
                 </Toolbar>
             </AppBar>
         </div>
