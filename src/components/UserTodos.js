@@ -54,10 +54,7 @@ const useStyles = makeStyles( theme =>({
     add:{
         marginLeft: "5.5em"
     },
-    pin:{
-        display: "block",
-        margin: "0 auto"
-    }   
+  
     
 }))
 
@@ -151,7 +148,7 @@ function UserTodos(props) {
                     <Grid item className={classes.note}>
                         <Card className={classes.newTodo}>
                             
-                            <img className={classes.pin} src={pin} />
+                            <img className="pin" src={pin} />
             
                             <CardContent className={classes.newTodoTitle}>
                                 <label className={classes.titleLbl}>Title: </label>

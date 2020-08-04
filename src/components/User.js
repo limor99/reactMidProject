@@ -21,7 +21,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles( theme =>({
     title:{
-        fontSize: "1rem",
+        
         textAlign: "center",
         paddingBottom: "0.5em",
         textDecoration: "underline",
@@ -123,7 +123,7 @@ function User(props) {
                 <div className={isClickedUser? classes.clickedUser : classes.user}>
                     <div class="container">
                         <form class="form-horizontal paddingForm">
-                            <Typography className={classes.title} variant="subtitle2" color="textSecondary" gutterBottom onClick={() => getUserTodosAndPosts()}>
+                            <Typography className={classes.title} variant="h5" color="textSecondary" gutterBottom onClick={() => getUserTodosAndPosts()}>
                                 ID: {props.user.id}, {props.user.name} 
                             </Typography>
                         

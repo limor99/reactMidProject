@@ -64,3 +64,8 @@
   display: block;
   height: 100%;
 }
+
+.pin{
+  display: block;
+  margin: 0 auto;
+} 
