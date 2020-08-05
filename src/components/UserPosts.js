@@ -48,9 +48,11 @@ const useStyles = makeStyles( theme =>({
     },
     add:{
         marginLeft: "7.5em"
+    },
+    captionLbl:{
+        fontWeight: "bold"
     }
-    
-    
+        
 }))
 
 function UserPosts(props) {
@@ -143,11 +145,11 @@ function UserPosts(props) {
                         <Card className={classes.newPost}>
                             
                             <CardContent>
-                                <label>Title: </label>
+                                <label className={classes.captionLbl}>Title: </label>
                                 
                                 <TextField className={classes.postTitle} id="outlined-basic" label="" variant="outlined" value={title} onChange={e => setTitle(e.target.value)}/>
                                 <br/><br/>
-                                <label>Body: </label>
+                                <label className={classes.captionLbl}>Body: </label>
                                 <TextField className={classes.postBody} id="outlined-multiline-static" label="" multiline  rows={2} variant="outlined" value={body} onChange={e => setBody(e.target.value)}/>
                                 
                             </CardContent>

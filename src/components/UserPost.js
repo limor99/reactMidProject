@@ -17,8 +17,8 @@ function UserPost(props) {
     return (
         <div>
              <div className={classes.post}>
-                Title: {props.userPost.title}<br/>
-                Body: {props.userPost.body}
+                <b>Title:</b> {props.userPost.title}<br/>
+                <b>Body:</b> {props.userPost.body}
             </div>
         </div>
     )

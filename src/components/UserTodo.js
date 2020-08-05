@@ -45,8 +45,8 @@ const updateTodo = () =>{
     return (
         <div className={classes.todo}>
             <img className="pin" src={pin} alt="pin"/>
-            Title: {props.userTodo.title}<br/>
-            Completed: {isCompleted.toString()}
+            <b>Title:</b> {props.userTodo.title}<br/>
+            <b>Completed:</b> {isCompleted.toString()}
             <div className={isCompleted? "notDisplay" : classes.display}>
                
                 <Button

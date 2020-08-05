@@ -26,7 +26,8 @@ const useStyles = makeStyles( theme =>({
        backgroundColor: "#fffa9b",
     },
     titleLbl: {
-        paddingRight: "1em"
+        paddingRight: "1em",
+        fontWeight: "bold"
     },
     
     title:{
