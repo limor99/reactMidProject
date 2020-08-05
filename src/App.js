@@ -271,9 +271,9 @@ const App = () => {
   return (
 
     <div className="App">
-      <AppContext.Provider value={{users, updateCallback, deleteCallback, getUserTodosAndPostsCallback, usersTodos, userTodos, userPosts, 
-                      clickedUserArr, isUserTodosCompletedArr, isDisplayUserTodos, isDisplayUserPosts, matches, isDisplayUserData, userData, selectedUserId, addUser, updateTodoCallback, addUserTodoCallback, setIsDisplayUserTodoCallback,
-                      addUserPostCallback, setIsDisplayUserPostsCallback, setIsDisplayNewUserFormCallback, addUserCallback}}>
+      <AppContext.Provider value={{users, usersTodos, userTodos, userPosts, clickedUserArr, isUserTodosCompletedArr, isDisplayUserTodos, isDisplayUserPosts, matches, 
+            isDisplayUserData, userData, selectedUserId, addUser, updateCallback, deleteCallback, getUserTodosAndPostsCallback, updateTodoCallback, addUserTodoCallback, 
+            setIsDisplayUserTodoCallback, addUserPostCallback, setIsDisplayUserPostsCallback, setIsDisplayNewUserFormCallback, addUserCallback}}>
           <Header/>
           <Grid container direction="row" justify="flex-start" alignItems="flex-start">
               <Grid item>
@@ -292,9 +292,6 @@ const App = () => {
                       </Grid>
 
                       {matches ? null : addUser}
-                      
-
-                      
                   </Grid>
               </Grid>
           </Grid>

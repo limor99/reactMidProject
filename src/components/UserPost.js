@@ -5,7 +5,7 @@ import {makeStyles} from '@material-ui/core/styles';
 const useStyles = makeStyles( theme =>({
     post:{
         padding: "1em",        
-        margin: "1em 2em 1.5em 2em",
+        margin: "1em 5em 1.5em 5em",
         backgroundColor: "#fffa9b",
         fontSize: "15pt"
     }

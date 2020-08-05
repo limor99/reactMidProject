@@ -42,45 +42,41 @@ const Users = () => {
         appContext.setIsDisplayNewUserFormCallback(true);
     }
     
-        return (
-                
-                    <Grid  container direction="column" justify="flex-start" alignItems="flex-start" sm={12}>
-                        <Grid className={classes.searchWrap} item sm={12}>
-                            <Grid container justify="space-between" alignItems="center" sm={12}>
-                                <Grid item xs={10}>
-                                    <input className={classes.search} placeholder="Search by name / email" type="text" onChange={(e) => search(e.target.value)} />
-                                </Grid>
-                                <Grid item sm={2}>
-                                    <IconButton  aria-label="add user" onClick={() => addNewUser()}>
-                                        <PersonAddIcon fontSize="large"/>
-                                    </IconButton>
-                                </Grid>
-                            </Grid>
+    return (
+            <Grid  container direction="column" justify="flex-start" alignItems="flex-start" sm={12}>
+                <Grid className={classes.searchWrap} item sm={12}>
+                    <Grid container justify="space-between" alignItems="center" sm={12}>
+                        <Grid item xs={10}>
+                            <input className={classes.search} placeholder="Search by name / email" type="text" onChange={(e) => search(e.target.value)} />
                         </Grid>
-                        {appContext.matches ? appContext.addUser : null}
-                        <Grid item className="fWidth">
-                            <Grid container direction="column" justify="center" alignItems="center">
-                                {
-                                    filterDisplay.map(user =>{
-                                        
-                                        return (    <React.Fragment>
-                                                        <Grid item className="fWidth"> 
-                                                            <User key={user.id} user={user}/>    
-                                                        </Grid>
-                                                        
-                                                     </React.Fragment>
-                                                )
-                                    
-                                    })
-                                    
-                                }
-                            </Grid>
+                        <Grid item sm={2}>
+                            <IconButton  aria-label="add user" onClick={() => addNewUser()}>
+                                <PersonAddIcon fontSize="large"/>
+                            </IconButton>
                         </Grid>
                     </Grid>
-
-            
-           
-        )
+                </Grid>
+                {appContext.matches ? appContext.addUser : null}
+                <Grid item className="fWidth">
+                    <Grid container direction="column" justify="center" alignItems="center">
+                        {
+                            filterDisplay.map(user =>{
+                                
+                                return (    
+                                                <Grid item className="fWidth"> 
+                                                    <User key={user.id} user={user}/>    
+                                                </Grid>
+                                                
+                                               
+                                        )
+                            
+                            })
+                            
+                        }
+                    </Grid>
+                </Grid>
+            </Grid>
+    )
     
 }
 
