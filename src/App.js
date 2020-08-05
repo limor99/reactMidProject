@@ -243,7 +243,7 @@ const App = () => {
 
           </Grid>
           <Grid item className="fWidth">
-            <img className={classes.openImg} src={todos}/>
+            <img className={classes.openImg} src={todos} alt="welcome" />
           </Grid>
       </Grid>
   )

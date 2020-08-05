@@ -1,7 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
 
-import userUtils from '../utils/UsersUtil.js';
-
 import AppContext from '../AppContext.js';
 
 
@@ -15,8 +13,6 @@ import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import UpdateIcon from '@material-ui/icons/Update';
 import DeleteIcon from '@material-ui/icons/Delete';
-
-
 
 
 const useStyles = makeStyles( theme =>({

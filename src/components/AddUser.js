@@ -31,7 +31,7 @@ function AddUser() {
 
     const addUserSubmit = () =>{
         //e.preventDefault();
-        if(name != '' && email != ''){
+        if(name !== '' && email !== ''){
             let userArr = appContext.users;
             let lastUser = userArr.slice(-1)[0];
             let nextUserId = lastUser.id + 1;

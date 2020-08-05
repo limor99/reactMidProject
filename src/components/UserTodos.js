@@ -3,7 +3,6 @@ import React, {useState, useContext, useEffect} from 'react';
 import UserTodo from './UserTodo';
 
 import AppContext from '../AppContext';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -148,7 +147,7 @@ function UserTodos(props) {
                     <Grid item className={classes.note}>
                         <Card className={classes.newTodo}>
                             
-                            <img className="pin" src={pin} />
+                            <img className="pin" src={pin} alt="pin" />
             
                             <CardContent className={classes.newTodoTitle}>
                                 <label className={classes.titleLbl}>Title: </label>
