@@ -165,8 +165,8 @@ const App = () => {
     }
 
     const updateTodoCallback = (obj) =>{
-      let userTodosArr = usersTodos.map(todo => todo.id === obj.id && todo.userId === obj.userId ? {...todo, ...obj} : todo);
-      setUsersTodos(userTodosArr);
+      let usersTodosArr = usersTodos.map(todo => todo.id === obj.id && todo.userId === obj.userId ? {...todo, ...obj} : todo);
+      setUsersTodos(usersTodosArr);
     }
 
     const addUserTodoCallback = (objToAdd) =>{
@@ -287,7 +287,7 @@ const App = () => {
                       <Grid item className={isDisplayWelcome? "display" : "notDisplay"}>
                           {matches ? null : welcome}
                       </Grid>
-                      <Grid item className={isDisplayUserData? "display": "notDisplay"}>
+                      <Grid item className={isDisplayUserData? "display fWidth": "notDisplay"}>
                           {matches ? null : userData}
                       </Grid>
 

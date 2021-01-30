@@ -1,16 +1,15 @@
 import React, {useState, useContext, useEffect} from 'react';
 
 import UserTodo from './UserTodo';
+import AddTodo from './AddTodo';
 
 
 import AppContext from '../AppContext';
 import Typography from '@material-ui/core/Typography';
 import IconButton from "@material-ui/core/IconButton";
 import {makeStyles} from '@material-ui/core/styles';
+
 import AddCircleOutlinedIcon from '@material-ui/icons/AddCircleOutlined';
-
-
-import AddTodo from './AddTodo';
 
 const useStyles = makeStyles( theme =>({
     userTodosTitle: {
@@ -76,7 +75,7 @@ function UserTodos(props) {
             </div>
 
             <div className={!isDisplayUserTodos? "displayForm" : "notDisplay"}>
-                <AddTodo/>
+                <AddTodo userId={props.userId}/>
             </div>
             
         </React.Fragment>

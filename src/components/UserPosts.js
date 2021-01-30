@@ -74,7 +74,7 @@ function UserPosts(props) {
             </div>
 
             <div className={!isDisplayUserPosts? "displayForm" : "notDisplay"}>
-                <AddPost/>
+                <AddPost userId={props.userId}/>
 
             </div>
 

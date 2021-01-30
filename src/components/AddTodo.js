@@ -26,8 +26,7 @@ const useStyles = makeStyles( theme =>({
     },
     note: {
         width: "14em",
-        height: "14em",
-        margin: "auto 0"
+        paddingTop: "0.1em"
     },
     newTodo: {
         backgroundColor: "#fffa9b",

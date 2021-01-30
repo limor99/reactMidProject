@@ -92,90 +92,90 @@ function User(props) {
         appContext.getUserTodosAndPostsCallback(userId, userName);
     }
 
-         const updateUser = () =>{
-            let userId = props.user.id;
-            let updateObj = {
-                id: userId,
-                name: name,
-                email: email,
-                street: street,
-                city: city,
-                zipcode: zipcode
-            }
-            appContext.updateCallback(updateObj);
-            
+    const updateUser = () =>{
+        let userId = props.user.id;
+        let updateObj = {
+            id: userId,
+            name: name,
+            email: email,
+            street: street,
+            city: city,
+            zipcode: zipcode
         }
-    
-        const deleteUser = () =>{
-            let userId = props.user.id;
-            appContext.deleteCallback(userId);
-        }
+        appContext.updateCallback(updateObj);
+        
+    }
+
+    const deleteUser = () =>{
+        let userId = props.user.id;
+        appContext.deleteCallback(userId);
+    }
 
     return (
         <React.Fragment>
-        <Card variant="outlined" className={isAllCompletedTodos ? classes.completedTodos : classes.uncompletedTodos}>
-            <CardContent className={classes.userContent}>
-            
-                <div className={isClickedUser? classes.clickedUser : classes.user}>
-                    <div class="container">
-                        <form class="form-horizontal paddingForm">
-                            <Typography className={classes.title} variant="h5" color="textSecondary" gutterBottom onClick={() => getUserTodosAndPosts()}>
-                                ID: {props.user.id}, {props.user.name} 
-                            </Typography>
-                        
-                            <div class="form-group">
-                                <label class="col-3 control-label" >Name: </label>
-                                <input class="col-9" type="text" value={name} onChange={e => setName(e.target.value)}/>
-                                
-                            </div>
-                            <div class="form-group">
-                                <label class="col-3 control-label">Email: </label>
-                                <input class="col-9" type="text" value={email} onChange={e => setEmail(e.target.value)}/>
-                            </div>
-                            
-                            
-                                
-                                
-                            <div className={isDisplayOtherData ? "display" : "notDisplay"}>
-                                <div class="form-group">
-                                    <label class="col-3 control-label" >Strret:</label>
-                                    <input class="col-9" type="text" value={street} onChange={e => setStreet(e.target.value)} />
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-3 control-label">City:</label>
-                                    <input class="col-9" type="text" value={city} onChange={e => setCity(e.target.value)} />
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-3 control-label">Zip Code:</label>
-                                    <input class="col-9" type="text" value={zipcode} onChange={e => setZipcode(e.target.value)} />
-                                </div>
-                            </div>       
-                              
-                            
-                            
-                        </form>
-                    </div>
+            <Card variant="outlined" className={isAllCompletedTodos ? classes.completedTodos : classes.uncompletedTodos}>
+                <CardContent className={classes.userContent}>
                 
-                </div>  
-            
-            </CardContent>
-            <CardActions className={classes.userAction} disableSpacing>
-                <Button variant="outlined" size="small" onMouseOver={() => setIsDisplayOtherData(true)} onClick={() => setIsDisplayOtherData(false)}>Other Data</Button>
+                    <div className={isClickedUser? classes.clickedUser : classes.user}>
+                        <div class="container">
+                            <form class="form-horizontal paddingForm">
+                                <Typography className={classes.title} variant="h5" color="textSecondary" gutterBottom onClick={() => getUserTodosAndPosts()}>
+                                    ID: {props.user.id}, {props.user.name} 
+                                </Typography>
+                            
+                                <div class="form-group">
+                                    <label class="col-3 control-label" >Name: </label>
+                                    <input class="col-9" type="text" value={name} onChange={e => setName(e.target.value)}/>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-3 control-label">Email: </label>
+                                    <input class="col-9" type="text" value={email} onChange={e => setEmail(e.target.value)}/>
+                                </div>
+                                
+                                
+                                    
+                                    
+                                <div className={isDisplayOtherData ? "display" : "notDisplay"}>
+                                    <div class="form-group">
+                                        <label class="col-3 control-label" >Strret:</label>
+                                        <input class="col-9" type="text" value={street} onChange={e => setStreet(e.target.value)} />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-3 control-label">City:</label>
+                                        <input class="col-9" type="text" value={city} onChange={e => setCity(e.target.value)} />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-3 control-label">Zip Code:</label>
+                                        <input class="col-9" type="text" value={zipcode} onChange={e => setZipcode(e.target.value)} />
+                                    </div>
+                                </div>       
+                                
+                                
+                                
+                            </form>
+                        </div>
+                    
+                    </div>  
                 
-                           
+                </CardContent>
+                <CardActions className={classes.userAction} disableSpacing>
+                    <Button variant="outlined" size="small" onMouseOver={() => setIsDisplayOtherData(true)} onClick={() => setIsDisplayOtherData(false)}>Other Data</Button>
+                    
+                            
 
-                <IconButton className={classes.btnSpacing} onClick={() => updateUser()} aria-label="update">
-                    <UpdateIcon />
-                </IconButton>
-                <IconButton onClick={() => deleteUser()} aria-label="delete">
-                    <DeleteIcon />
-                </IconButton>
-            </CardActions>
-        </Card>
+                    <IconButton className={classes.btnSpacing} onClick={() => updateUser()} aria-label="update">
+                        <UpdateIcon />
+                    </IconButton>
+                    <IconButton onClick={() => deleteUser()} aria-label="delete">
+                        <DeleteIcon />
+                    </IconButton>
+                </CardActions>
+            </Card>
 
-        <Grid item >
-            {appContext.matches && appContext.selectedUserId === props.user.id ? appContext.userData : null }
-        </Grid>
+            <Grid item >
+                {appContext.matches && appContext.selectedUserId === props.user.id ? appContext.userData : null }
+            </Grid>
         </React.Fragment>
        
     )
